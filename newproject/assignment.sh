@@ -13,7 +13,6 @@ if [ -d newproject ]; then
   echo "Recreating the newproject directory"
   rm -rf newproject
 fi
-
 mkdir newproject
 cd newproject
 
@@ -24,20 +23,6 @@ touch analysis/main.py
 # download client data
 curl -Lo rawdata.zip https://github.com/UofT-DSI/shell/raw/refs/heads/main/02_activities/assignments/rawdata.zip
 unzip -q rawdata.zip
-
-git add assignment.sh
-cd newproject
-mkdir data
-mv rawdata data/raw
-ls ./data/raw 
-mkdir -p data/processed/server_logs data/processed/user_logs data/processed/event_logs
-cp ./data/raw/*server*.log ./data/processed/server_logs/
-cp ./data/raw/*user*.log ./data/processed/user_logs/
-cp ./data/raw/*event*.log ./data/processed/event_logs/
-rm ./data/raw/*ipaddr* ./data/processed/user_logs/*ipaddr*
-ls ./data/processed/*/* > ./data/inventory.txt
-
-git pull https://github.com/UofT-DSI/shell coworker-changes --no-rebase
 
 ###########################################
 # Complete assignment here
